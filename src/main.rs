@@ -1,6 +1,5 @@
 use orion_shield::generator::{
     engine::{Command, Engine},
-    password::PasswordConfig,
     terminal_interaction,
 };
 
@@ -10,39 +9,17 @@ fn main() {
     let res = engine.exec(Command::GetConfig);
 
     match res {
-        Ok(s) => print!("{}", s),
-        Err(e) => print!("error: {}", e),
+        Ok(s) => println!("{}", s),
+        Err(e) => println!("error: {}", e),
     }
 
-    let c: PasswordConfig = (17, false, true, false);
-    let p = engine.exec(Command::UpdateConfig(c));
+    println!("");
+    for _i in 0..5 {
+        let pwd = engine.exec(Command::Generate);
 
-    match p {
-        Ok(s) => print!("{}", s),
-        Err(e) => print!("error: {}", e),
-    }
-
-    print!("\n\n");
-    let pwd = engine.exec(Command::Generate);
-
-    match pwd {
-        Ok(s) => print!("{}", s),
-        Err(e) => print!("error: {}", e),
-    }
-
-    print!("\n\n");
-    let res = engine.exec(Command::GetConfig);
-
-    match res {
-        Ok(s) => print!("{}", s),
-        Err(e) => print!("error: {}", e),
-    }
-
-    print!("\n\n");
-    let pwd = engine.exec(Command::Generate);
-
-    match pwd {
-        Ok(s) => print!("{}", s),
-        Err(e) => print!("error: {}", e),
+        match pwd {
+            Ok(res) => println!("Password: {}", res),
+            Err(e) => println!("fail to generate password: {}", e),
+        }
     }
 }
