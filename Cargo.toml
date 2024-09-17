@@ -1,7 +1,11 @@
 [package]
-name = "passgen"
+name = "orion-shield"
 version = "0.1.0"
 edition = "2021"
+
+[[bin]]
+name = "orion_shield"
+path = "src/min.rs"
 
 [dependencies]
 rand = "0.8.5"
