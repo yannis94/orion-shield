@@ -1,11 +1,12 @@
 [package]
-name = "orion-shield"
+name = "orion_shield"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
 name = "orion_shield"
-path = "src/min.rs"
+path = "src/main.rs"
 
 [dependencies]
+clap = { version = "4.5.18", features = ["derive"] }
 rand = "0.8.5"
