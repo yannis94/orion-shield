@@ -38,4 +38,11 @@ impl Engine {
             Command::Quit => Err(String::from("quiting")),
         }
     }
+
+    pub fn get_cfg(&mut self) -> String {
+        match self.exec(Command::GetConfig) {
+            Ok(cfg) => cfg,
+            Err(e) => format!("{}", e),
+        }
+    }
 }
