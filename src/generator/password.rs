@@ -41,7 +41,7 @@ impl Password {
         self.with_spec_char = cfg.2;
         self.with_digit = cfg.3;
 
-        Ok(String::from("config updated"))
+        Ok(String::from("Configuration validated."))
     }
 
     pub fn generate(&self) -> String {

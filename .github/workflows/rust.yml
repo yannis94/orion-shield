@@ -26,4 +26,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
-      run: cargo build --bin orion-shield --verbose
+      run: cargo build --bin orion_shield --verbose

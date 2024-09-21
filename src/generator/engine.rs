@@ -35,7 +35,7 @@ impl Engine {
             }
             Command::UpdateConfig(cfg) => self.password.update_config(cfg),
             Command::Generate => Ok(self.password.generate()),
-            Command::Quit => Ok(String::from("quiting")),
+            Command::Quit => Err(String::from("quiting")),
         }
     }
 }
