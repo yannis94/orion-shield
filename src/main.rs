@@ -6,13 +6,11 @@ use orion_shield::generator::{engine::Engine, terminal_interaction};
 /// Orion-Shield is a password generator.
 #[derive(Parser)]
 struct Cli {
+    /// Use interactive mode (app)
+    #[arg(short = 'i', long = "interactive")]
+    interactive_mode: bool,
     /// Give a password length config
-    #[arg(
-        short = 'l',
-        long = "length",
-        value_name = "PWD_LENGTH",
-        default_value_t = 0
-    )]
+    #[arg(short = 'l', long = "length", default_value_t = 20)]
     length: u8,
 
     /// Give a password with uppercase config [default: false]
@@ -30,10 +28,10 @@ struct Cli {
 
 fn main() {
     let args = Cli::parse();
-    if args.length > 0 {
-        run(args);
-    } else {
+    if args.interactive_mode {
         run_app();
+    } else {
+        run(args);
     }
 }
 
@@ -68,6 +66,7 @@ fn run_app() {
     let mut engine = Engine::new();
 
     loop {
+        engine.get_cfg();
         let c = terminal_interaction::get_user_command();
         match engine.exec(c) {
             Ok(res) => {
